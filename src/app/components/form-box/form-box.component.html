@@ -1,0 +1,92 @@
+<div class="formBox">
+  <mat-stepper linear #stepper>
+    <!-- First Step -->
+    <mat-step [stepControl]="personalInfoGroup" [editable]="isEditable">
+      <form [formGroup]="personalInfoGroup">
+        <p>
+          Please provide us with your personal information to send you the item
+        </p>
+        <ng-template matStepLabel>Personal Information</ng-template>
+        <mat-form-field appearance="outline" class="inputBox">
+          <input matInput type="date" formControlName="date" required />
+          <mat-label>DD/MM/YYYY</mat-label
+          ><!-- revisar pos -->
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="inputBox">
+          <mat-label>Gender</mat-label>
+          <!-- <input matInput/> -->
+          <mat-select formControlName="Gender" required>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="inputBox">
+          <mat-label>ID Number</mat-label>
+          <input
+            matInput
+            placeholder="ID Number"
+            formControlName="ID"
+            required
+          />
+        </mat-form-field>
+        <div class="nextBtn">
+          <!-- reutilizar -->
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Second step -->
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup" >
+        <ng-template matStepLabel>Address</ng-template>
+        <mat-form-field appearance="outline" class="inputBox">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" required />
+        </mat-form-field>
+        <table class="" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field appearance="outline" class="">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" placeholder="Bogotá" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="outline" class="">
+                <mat-label>State</mat-label>
+                <input matInput placeholder="Bogotá DC" formControlName="state" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="outline" class="">
+                <mat-label>Postal Code</mat-label>
+                <input
+                  matInput
+                  #postalCode
+                  maxlength="5"
+                  placeholder="25000"
+                  value=""
+                  formControlName="postalCode"
+                />
+                <mat-hint>{{ postalCode.value.length }} / 5</mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <div class="nextBtn">
+          <!-- reutilizar -->
+          <button mat-button matStepperNext type="button">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- Third Step -->
+    <mat-step>
+      <ng-template matStepLabel>Payment</ng-template>
+      <div class="nextBtn">
+        <!-- reutilizar -->
+        <button mat-button matStepperNext type="submit">Send</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
